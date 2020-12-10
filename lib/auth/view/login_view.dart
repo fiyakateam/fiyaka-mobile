@@ -43,6 +43,67 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 
+  Widget _passwordField() {
+    return Container(
+      alignment: Alignment.centerLeft,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 3.0,
+            offset: Offset(0, 2),
+          ),
+        ],
+      ),
+      height: 60.0,
+      child: TextField(
+        obscureText: true,
+        style: TextStyle(
+          color: Colors.white,
+          fontFamily: 'OpenSans',
+        ),
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.only(top: 14.0),
+          prefixIcon: Icon(
+            Icons.lock,
+            color: Colors.white,
+          ),
+          hintText: 'Enter your Password',
+          hintStyle: TextStyle(
+            color: Colors.white54,
+            fontFamily: 'OpenSans',
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _loginButton() {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 25.0),
+      width: 200,
+      child: RaisedButton(
+        elevation: 5.0,
+        onPressed: () => print('Login'),
+        padding: EdgeInsets.all(15.0),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30.0),
+        ),
+        color: Colors.white,
+        child: Text(
+          'LOGIN',
+          style: TextStyle(
+            color: Colors.blue,
+            fontSize: 18.0,
+            fontFamily: 'OpenSans',
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,7 +140,18 @@ class _LoginViewState extends State<LoginView> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                      SizedBox(
+                        height: 60.0,
+                      ),
                       _emailField(),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      _passwordField(),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      _loginButton(),
                     ],
                   ),
                 ),
