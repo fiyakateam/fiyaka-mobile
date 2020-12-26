@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'view/landing/landing_view.dart';
 import 'view/not_found/not_found_view.dart';
 import '../auth/view/login/login_view.dart';
+import '../auth/view/profile/profile_view.dart';
 
 class Routes {
   static const String landing = '/';
   static const String login = '/login';
+  static const String profile = '/profile';
 }
 
 abstract class MyRouter {
@@ -43,6 +45,8 @@ abstract class MyRouter {
         return _generateRoute(LandingView(), settings);
       case Routes.login:
         return _generateRoute(LoginView(), settings);
+      case Routes.profile:
+        return _generateRoute(ProfileView(args), settings);
       default:
         return _generateRoute(NotFoundView(), settings);
     }

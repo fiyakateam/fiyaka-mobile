@@ -8,6 +8,6 @@ class LandingViewModel extends BaseViewModel {
   final _navigatorService = locator<NavigationService>();
 
   void debug() async {
-    _navigatorService.navigateTo(Routes.login);
+    await _navigatorService.navigateTo(Routes.login);
   }
 }
