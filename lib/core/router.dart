@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'view/landing/landing_view.dart';
 import 'view/not_found/not_found_view.dart';
-import '../auth/view/login_view.dart';
+import '../auth/view/login/login_view.dart';
 
 class Routes {
   static const String landing = '/';

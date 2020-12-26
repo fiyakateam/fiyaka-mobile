@@ -1,13 +1,10 @@
+import 'package:fiyaka/auth/view/login/login_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:stacked/stacked.dart';
 
-class LoginView extends StatefulWidget {
-  @override
-  _LoginViewState createState() => _LoginViewState();
-}
-
-class _LoginViewState extends State<LoginView> {
-  Widget _emailField() {
+class LoginView extends ViewModelBuilderWidget<LoginViewModel> {
+  Widget _emailField(LoginViewModel model) {
     return Container(
       alignment: Alignment.centerLeft,
       decoration: BoxDecoration(
@@ -22,6 +19,7 @@ class _LoginViewState extends State<LoginView> {
       ),
       height: 60.0,
       child: TextField(
+        controller: model.emailController,
         keyboardType: TextInputType.emailAddress,
         style: TextStyle(
           color: Colors.white,
@@ -43,7 +41,7 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 
-  Widget _passwordField() {
+  Widget _passwordField(LoginViewModel model) {
     return Container(
       alignment: Alignment.centerLeft,
       decoration: BoxDecoration(
@@ -58,6 +56,7 @@ class _LoginViewState extends State<LoginView> {
       ),
       height: 60.0,
       child: TextField(
+        controller: model.passwordController,
         obscureText: true,
         style: TextStyle(
           color: Colors.white,
@@ -79,13 +78,14 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 
-  Widget _loginButton() {
+  Widget _loginButton(LoginViewModel model) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 25.0),
       width: 200,
       child: RaisedButton(
         elevation: 5.0,
-        onPressed: () => print('Login'),
+        onPressed: () => model.login(
+            model.emailController.text, model.passwordController.text),
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
@@ -105,12 +105,12 @@ class _LoginViewState extends State<LoginView> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget builder(BuildContext context, LoginViewModel model, Widget child) {
     return Scaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.dark,
         child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+          onTap: () => model.unfocus(context),
           child: Stack(
             children: [
               Container(
@@ -143,15 +143,15 @@ class _LoginViewState extends State<LoginView> {
                       SizedBox(
                         height: 60.0,
                       ),
-                      _emailField(),
+                      _emailField(model),
                       SizedBox(
                         height: 20.0,
                       ),
-                      _passwordField(),
+                      _passwordField(model),
                       SizedBox(
                         height: 20.0,
                       ),
-                      _loginButton(),
+                      _loginButton(model),
                     ],
                   ),
                 ),
@@ -162,4 +162,7 @@ class _LoginViewState extends State<LoginView> {
       ),
     );
   }
+
+  @override
+  LoginViewModel viewModelBuilder(BuildContext context) => LoginViewModel();
 }
