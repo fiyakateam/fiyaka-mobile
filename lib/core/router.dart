@@ -1,3 +1,5 @@
+import 'package:fiyaka/auth/view/edit/edit_email_view.dart';
+import 'package:fiyaka/auth/view/edit/edit_password_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +12,8 @@ class Routes {
   static const String landing = '/';
   static const String login = '/login';
   static const String profile = '/profile';
+  static const String editEmail = '/profile/editEmail';
+  static const String editPassword = '/profile/editPassword';
 }
 
 abstract class MyRouter {
@@ -47,6 +51,10 @@ abstract class MyRouter {
         return _generateRoute(LoginView(), settings);
       case Routes.profile:
         return _generateRoute(ProfileView(args), settings);
+      case Routes.editEmail:
+        return _generateRoute(EditEmailView(), settings);
+      case Routes.editPassword:
+        return _generateRoute(EditPasswordView(), settings);
       default:
         return _generateRoute(NotFoundView(), settings);
     }
