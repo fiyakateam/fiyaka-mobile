@@ -1,4 +1,5 @@
 import 'package:fiyaka/auth/widget/email_field.dart';
+import 'package:fiyaka/auth/widget/my_button.dart';
 import 'package:fiyaka/auth/widget/password_field.dart';
 import 'package:flutter/services.dart';
 import 'package:stacked/stacked.dart';
@@ -65,7 +66,17 @@ class LoginView extends ViewModelBuilderWidget<LoginViewModel> {
                       PasswordField(
                         passwordController: model.passwordController,
                         hintText: 'Enter Your Password',
-                      )
+                      ),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      MyButton(
+                        bgColor: Colors.white,
+                        txtColor: Colors.blue,
+                        buttonText: 'LOGIN',
+                        width: 200.0,
+                        onPressed: () => model.login(),
+                      ),
                     ],
                   ),
                 ),

@@ -8,5 +8,7 @@ class LoginViewModel extends BaseViewModel {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  Future<void> login() async {}
+
   void unfocus(BuildContext context) => FocusScope.of(context).unfocus();
 }
