@@ -88,30 +88,47 @@ class ProfileView extends ViewModelBuilderWidget<ProfileViewModel> {
                         ),
                       ),
                     ),
-                    Container(
-                      padding: EdgeInsets.symmetric(vertical: 25.0),
-                      width: 200,
-                      child: RaisedButton(
-                        elevation: 5.0,
-                        onPressed: () => {
-                          //TODO add editting credentials
-                        },
-                        padding: EdgeInsets.all(15.0),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                        ),
-                        color: Color.fromRGBO(71, 255, 112, 1),
-                        child: Text(
-                          'EDIT',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18.0,
-                            fontFamily: 'OpenSans',
-                            fontWeight: FontWeight.bold,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: RaisedButton(
+                            onPressed: () => model.editEmail(),
+                            child: Text(
+                              'Change Email',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: 'OpenSans',
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            color: Color.fromRGBO(71, 255, 112, 1),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                            ),
                           ),
                         ),
-                      ),
-                    )
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: RaisedButton(
+                            onPressed: () => model.editPassword(),
+                            child: Text(
+                              'Change Password',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: 'OpenSans',
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            color: Color.fromRGBO(71, 255, 112, 1),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ],
