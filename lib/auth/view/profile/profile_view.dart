@@ -9,7 +9,7 @@ class ProfileView extends ViewModelBuilderWidget<ProfileViewModel> {
   ProfileViewModel viewModelBuilder(BuildContext context) => ProfileViewModel();
 
   @override
-  bool get reactive => false;
+  bool get reactive => true;
 
   @override
   void onViewModelReady(ProfileViewModel model) {}
@@ -58,7 +58,7 @@ class ProfileView extends ViewModelBuilderWidget<ProfileViewModel> {
 
     return Scaffold(
       appBar: MyAppBar(
-        title: 'ProfileView',
+        title: 'Profile',
       ),
       backgroundColor: Color.fromRGBO(98, 98, 98, 1),
       body: Column(
@@ -85,7 +85,7 @@ class ProfileView extends ViewModelBuilderWidget<ProfileViewModel> {
                   height: 40,
                   width: 40,
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () => model.changeProfilePic(context),
                     child: Icon(
                       Icons.add_a_photo,
                       color: Colors.white,
@@ -117,8 +117,14 @@ class ProfileView extends ViewModelBuilderWidget<ProfileViewModel> {
                 ),
                 Column(
                   children: [
-                    _infoSection('Email:', 'email@gmail.com'),
-                    _infoSection('Password:', '12345678')
+                    GestureDetector(
+                      onTap: () => model.changeEmail(),
+                      child: _infoSection('Email:', 'email@gmail.com'),
+                    ),
+                    GestureDetector(
+                      onTap: () => model.changePassword(),
+                      child: _infoSection('Password:', '12345678'),
+                    )
                   ],
                 ),
               ],
