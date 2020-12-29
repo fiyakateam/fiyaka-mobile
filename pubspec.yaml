@@ -44,6 +44,7 @@ flutter:
 
   assets:
     - asset/app_icon.png
+    - asset/images/avatar.png
 
   fonts:
     - family: SFProDisplay
