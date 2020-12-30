@@ -1,11 +1,15 @@
 import 'dart:io';
 
+import 'package:fiyaka/core/locator.dart';
+import 'package:fiyaka/core/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class ProfileViewModel extends BaseViewModel {
+  final _navigatorService = locator<NavigationService>();
   File _image;
   final _picker = ImagePicker();
   PickedFile _pickedFile;
@@ -45,6 +49,8 @@ class ProfileViewModel extends BaseViewModel {
   }
 
   void changePassword() {
-    print('password');
+    _navigatorService.navigateTo(
+      Routes.changePassword,
+    );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:fiyaka/auth/view/login/login_view.dart';
+import 'package:fiyaka/auth/view/profile/change/change_password_view.dart';
 import 'package:fiyaka/auth/view/profile/profile_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ class Routes {
   static const String landing = '/';
   static const String login = '/login';
   static const String profile = '/profile';
+  static const String changePassword = '/profile/changePassword';
 }
 
 abstract class MyRouter {
@@ -47,6 +49,8 @@ abstract class MyRouter {
         return _generateRoute(LoginView(), settings);
       case Routes.profile:
         return _generateRoute(ProfileView(), settings);
+      case Routes.changePassword:
+        return _generateRoute(ChangePasswordView(), settings);
       default:
         return _generateRoute(NotFoundView(), settings);
     }

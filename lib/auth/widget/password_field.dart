@@ -34,7 +34,7 @@ class PasswordField extends StatelessWidget {
             Icons.lock,
             color: Colors.white,
           ),
-          hintText: 'Enter your Password',
+          hintText: hintText,
           hintStyle: TextStyle(
             color: Colors.white54,
             fontFamily: 'OpenSans',
