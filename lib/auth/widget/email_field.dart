@@ -31,7 +31,7 @@ class EmailField extends StatelessWidget {
         decoration: InputDecoration(
           contentPadding: EdgeInsets.only(top: 14.0),
           prefixIcon: Icon(
-            Icons.email,
+            Icons.alternate_email,
             color: Colors.white,
           ),
           hintText: hintText,

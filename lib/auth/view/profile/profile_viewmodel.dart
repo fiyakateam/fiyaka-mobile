@@ -45,7 +45,9 @@ class ProfileViewModel extends BaseViewModel {
   }
 
   void changeEmail() {
-    print('email');
+    _navigatorService.navigateTo(
+      Routes.changeEmail,
+    );
   }
 
   void changePassword() {
