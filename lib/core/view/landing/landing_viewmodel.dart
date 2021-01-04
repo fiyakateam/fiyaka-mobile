@@ -7,7 +7,27 @@ import '../../locator.dart';
 class LandingViewModel extends BaseViewModel {
   final _navigatorService = locator<NavigationService>();
 
+  void _navigateTo(String route) {
+    _navigatorService.navigateTo(route);
+  }
+
   void debug() async {
-    await _navigatorService.navigateTo(Routes.login);
+    print('debug');
+  }
+
+  void loginView() {
+    _navigateTo(Routes.login);
+  }
+
+  void profileView() {
+    _navigateTo(Routes.profile);
+  }
+
+  void changePasswordView() {
+    _navigateTo(Routes.changePassword);
+  }
+
+  void changeEmailView() {
+    _navigateTo(Routes.changeEmail);
   }
 }
