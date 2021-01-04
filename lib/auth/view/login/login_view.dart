@@ -12,7 +12,7 @@ class LoginView extends ViewModelBuilderWidget<LoginViewModel> {
   LoginViewModel viewModelBuilder(BuildContext context) => LoginViewModel();
 
   @override
-  bool get reactive => false;
+  bool get reactive => true;
 
   @override
   void onViewModelReady(LoginViewModel model) {
@@ -77,8 +77,11 @@ class LoginView extends ViewModelBuilderWidget<LoginViewModel> {
                         txtColor: Colors.blue,
                         buttonText: 'LOGIN',
                         width: 200.0,
-                        onPressed: () => model.onSubmit(context),
+                        onPressed: model.loading
+                            ? null
+                            : () => model.onSubmit(context),
                       ),
+                      model.loading ? CircularProgressIndicator() : SizedBox(),
                     ],
                   ),
                 ),

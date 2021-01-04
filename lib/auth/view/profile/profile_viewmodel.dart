@@ -18,6 +18,7 @@ class ProfileViewModel extends BaseViewModel {
   final _picker = ImagePicker();
   PickedFile _pickedFile;
   UserModel user;
+  bool loading = false;
 
   Future<void> changeProfilePic(BuildContext context) async {
     await showDialog(
@@ -62,7 +63,10 @@ class ProfileViewModel extends BaseViewModel {
   }
 
   Future<void> refreshProfile() async {
+    loading = true;
+    notifyListeners();
     final user = await _authService.getProfile();
+    loading = false;
     if (user == null) {
       await _navigatorService.clearStackAndShow(Routes.login);
     } else {
@@ -72,12 +76,16 @@ class ProfileViewModel extends BaseViewModel {
   }
 
   Future<void> logOutPressed(BuildContext context) async {
+    loading = true;
+    notifyListeners();
     final success = await _authService.logout();
+    loading = false;
     if (success) {
       FlashUtil.showText(context, 'Logged out');
       await _navigatorService.clearStackAndShow(Routes.login);
     } else {
       FlashUtil.showText(context, 'Could not log out');
+      notifyListeners();
     }
   }
 
