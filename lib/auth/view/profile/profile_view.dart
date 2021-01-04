@@ -136,7 +136,8 @@ class ProfileView extends ViewModelBuilderWidget<ProfileViewModel> {
                         children: [
                           GestureDetector(
                             onTap: () => model.changeEmail(),
-                            child: _infoSection('Email:', model.user.email),
+                            child:
+                                _infoSection('Email:', model.user?.email ?? ''),
                           ),
                           GestureDetector(
                             onTap: () => model.changePassword(),
