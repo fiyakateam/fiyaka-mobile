@@ -1,7 +1,10 @@
 import 'dart:io';
 
+import 'package:fiyaka/auth/model/user_model.dart';
+import 'package:fiyaka/auth/service/auth_service.dart';
 import 'package:fiyaka/core/locator.dart';
 import 'package:fiyaka/core/router.dart';
+import 'package:fiyaka/core/util/flash_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
@@ -9,10 +12,12 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class ProfileViewModel extends BaseViewModel {
+  final _authService = locator<AuthService>();
   final _navigatorService = locator<NavigationService>();
   File _image;
   final _picker = ImagePicker();
   PickedFile _pickedFile;
+  UserModel user;
 
   Future<void> changeProfilePic(BuildContext context) async {
     await showDialog(
@@ -54,5 +59,30 @@ class ProfileViewModel extends BaseViewModel {
     _navigatorService.navigateTo(
       Routes.changePassword,
     );
+  }
+
+  Future<void> refreshProfile() async {
+    final user = await _authService.getProfile();
+    if (user == null) {
+      await _navigatorService.clearStackAndShow(Routes.login);
+    } else {
+      this.user = user;
+      notifyListeners();
+    }
+  }
+
+  Future<void> logOutPressed(BuildContext context) async {
+    final success = await _authService.logout();
+    if (success) {
+      FlashUtil.showText(context, 'Logged out');
+      await _navigatorService.clearStackAndShow(Routes.login);
+    } else {
+      FlashUtil.showText(context, 'Could not log out');
+    }
+  }
+
+  void secretButtonPress(BuildContext context) {
+    FlashUtil.showText(context, 'Ultra Secret Debug Menu');
+    _navigatorService.navigateTo(Routes.landing);
   }
 }

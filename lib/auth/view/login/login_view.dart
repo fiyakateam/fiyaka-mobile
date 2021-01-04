@@ -15,7 +15,9 @@ class LoginView extends ViewModelBuilderWidget<LoginViewModel> {
   bool get reactive => false;
 
   @override
-  void onViewModelReady(LoginViewModel model) {}
+  void onViewModelReady(LoginViewModel model) {
+    model.checkInitial();
+  }
 
   @override
   Widget builder(BuildContext context, LoginViewModel model, Widget child) {
@@ -75,7 +77,7 @@ class LoginView extends ViewModelBuilderWidget<LoginViewModel> {
                         txtColor: Colors.blue,
                         buttonText: 'LOGIN',
                         width: 200.0,
-                        onPressed: () => model.login(),
+                        onPressed: () => model.onSubmit(context),
                       ),
                     ],
                   ),

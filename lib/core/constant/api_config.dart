@@ -1,3 +1,4 @@
 class ApiConfig {
-  static const String _root = 'http://foo.com';
+  static const String _root = 'https://fiyakaapi.herokuapp.com';
+  static const String login = '$_root/auth/login';
 }

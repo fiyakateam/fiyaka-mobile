@@ -1,7 +1,8 @@
-import 'package:fiyaka/core/widget/my_app_bar.dart';
-import 'package:stacked/stacked.dart';
+import 'package:fiyaka/auth/widget/my_button.dart';
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 
+import '../../../core/widget/my_app_bar.dart';
 import 'profile_viewmodel.dart';
 
 class ProfileView extends ViewModelBuilderWidget<ProfileViewModel> {
@@ -12,7 +13,9 @@ class ProfileView extends ViewModelBuilderWidget<ProfileViewModel> {
   bool get reactive => true;
 
   @override
-  void onViewModelReady(ProfileViewModel model) {}
+  void onViewModelReady(ProfileViewModel model) {
+    model.refreshProfile();
+  }
 
   @override
   Widget builder(BuildContext context, ProfileViewModel model, Widget child) {
@@ -59,6 +62,13 @@ class ProfileView extends ViewModelBuilderWidget<ProfileViewModel> {
     return Scaffold(
       appBar: MyAppBar(
         title: 'Profile',
+        actions: [
+          FlatButton(
+            color: Colors.transparent,
+            child: Text(''),
+            onPressed: () => model.secretButtonPress(context),
+          )
+        ],
       ),
       backgroundColor: Color.fromRGBO(98, 98, 98, 1),
       body: Column(
@@ -119,12 +129,16 @@ class ProfileView extends ViewModelBuilderWidget<ProfileViewModel> {
                   children: [
                     GestureDetector(
                       onTap: () => model.changeEmail(),
-                      child: _infoSection('Email:', 'email@gmail.com'),
+                      child: _infoSection('Email:', model.user.email),
                     ),
                     GestureDetector(
                       onTap: () => model.changePassword(),
-                      child: _infoSection('Password:', '12345678'),
-                    )
+                      child: _infoSection('Password:', '***********'),
+                    ),
+                    MyButton(
+                      onPressed: () => model.logOutPressed(context),
+                      buttonText: 'Logout',
+                    ),
                   ],
                 ),
               ],

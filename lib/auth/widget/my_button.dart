@@ -30,7 +30,7 @@ class MyButton extends StatelessWidget {
         ),
         color: bgColor,
         child: Text(
-          'LOGIN',
+          buttonText,
           style: TextStyle(
             color: txtColor,
             fontSize: 18.0,
