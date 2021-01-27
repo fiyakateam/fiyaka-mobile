@@ -27,6 +27,22 @@ class LandingView extends ViewModelBuilderWidget<LandingViewModel> {
             onPressed: model.debug,
             child: Text('DEBUG'),
           ),
+          RaisedButton(
+            onPressed: model.loginView,
+            child: Text('LoginView'),
+          ),
+          RaisedButton(
+            onPressed: model.profileView,
+            child: Text('ProfileView'),
+          ),
+          RaisedButton(
+            onPressed: model.changePasswordView,
+            child: Text('ChangePasswordView'),
+          ),
+          RaisedButton(
+            onPressed: model.changeEmailView,
+            child: Text('ChangeEmailView'),
+          ),
         ],
       ),
     );

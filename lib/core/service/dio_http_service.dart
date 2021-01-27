@@ -72,39 +72,36 @@ class DioHttpService extends HttpService {
       final message = response.statusMessage;
       final data = response.data;
 
-      switch (code) {
-        case HttpStatus.ok:
-        case HttpStatus.accepted:
-          if (parseModel != null) {
-            final model = _responseParser<T, D>(parseModel, data);
-            return HttpResult<T>(
-              code: code,
-              body: message,
-              success: true,
-              data: model,
-            );
-          } else {
-            return HttpResult<T>(
-              code: code,
-              body: message,
-              success: true,
-              data: data,
-            );
-          }
-          break;
-        default:
+      if (code >= 200 && code < 300) {
+        if (parseModel != null) {
+          final model = _responseParser<T, D>(parseModel, data);
           return HttpResult<T>(
             code: code,
             body: message,
-            success: false,
+            success: true,
+            data: model,
           );
+        } else {
+          return HttpResult<T>(
+            code: code,
+            body: message,
+            success: true,
+            data: data,
+          );
+        }
       }
+
+      return HttpResult<T>(
+        code: code,
+        body: message,
+        success: false,
+      );
     } catch (e) {
       return HttpResult<T>(
         code: 500,
         body: 'HTTP Exception Caught',
         success: false,
-        data: e,
+        data: null,
       );
     }
   }

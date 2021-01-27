@@ -1,3 +1,4 @@
+import 'package:fiyaka/auth/service/auth_service.dart';
 import 'package:get_it/get_it.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -29,5 +30,13 @@ Future<void> initLocator() async {
   final _storageService = await StorageService.create();
   locator.registerSingleton(
     _storageService,
+  );
+
+  final _authService = await AuthService(
+    httpService: _httpService,
+    storageService: _storageService,
+  );
+  locator.registerSingleton(
+    _authService,
   );
 }
