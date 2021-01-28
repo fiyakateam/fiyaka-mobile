@@ -125,7 +125,7 @@ class ProfileView extends ViewModelBuilderWidget<ProfileViewModel> {
                     children: [
                       SizedBox(
                         width: double.infinity,
-                        height: 400,
+                        height: 280,
                         child: DecoratedBox(
                           decoration: BoxDecoration(
                               color: Color.fromRGBO(196, 196, 196, 1),
