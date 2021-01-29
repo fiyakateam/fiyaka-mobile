@@ -21,7 +21,6 @@ dependencies:
   device_info: ^1.0.0
   shared_preferences: ^0.5.12+4
   image_picker: ^0.6.7+17
-  injectable: ^1.0.7
 
   # stacked architecture
   observable_ish: ^2.1.4
