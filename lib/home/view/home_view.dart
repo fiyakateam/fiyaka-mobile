@@ -2,6 +2,7 @@ import 'package:fiyaka/auth/view/profile/profile_view.dart';
 import 'package:fiyaka/core/view/not_found/not_found_view.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:animations/animations.dart';
 
 import 'home_viewmodel.dart';
 
@@ -12,7 +13,20 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        body: getViewForIndex(model.currentIndex),
+        body: PageTransitionSwitcher(
+          duration: const Duration(milliseconds: 300),
+          reverse: model.reverse,
+          transitionBuilder: (Widget child, Animation<double> animation,
+              Animation<double> secondaryAnimation) {
+            return SharedAxisTransition(
+              child: child,
+              animation: animation,
+              secondaryAnimation: secondaryAnimation,
+              transitionType: SharedAxisTransitionType.horizontal,
+            );
+          },
+          child: getViewForIndex(model.currentIndex),
+        ),
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           backgroundColor: Colors.grey[300],
