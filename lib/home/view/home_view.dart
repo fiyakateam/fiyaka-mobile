@@ -1,4 +1,5 @@
 import 'package:fiyaka/auth/view/profile/profile_view.dart';
+import 'package:fiyaka/chat/view/chat_view.dart';
 import 'package:fiyaka/core/view/not_found/not_found_view.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -51,7 +52,7 @@ class HomeView extends StatelessWidget {
   Widget getViewForIndex(int index) {
     switch (index) {
       case 0:
-        return Center(child: Text('Chat View'));
+        return ChatView();
       case 1:
         return ProfileView();
       default:
