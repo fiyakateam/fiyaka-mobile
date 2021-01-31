@@ -1,3 +1,3 @@
-# v1.1 Released
+# v1.2 Released
 
 Real-time chat implemented
