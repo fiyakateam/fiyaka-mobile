@@ -1,8 +1,10 @@
-import 'package:fiyaka/chat/view/chat_input.dart';
-import 'package:fiyaka/chat/view/chat_section.dart';
-import 'package:stacked/stacked.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:stacked/stacked.dart';
 
+import '../service/chat_service.dart';
+import 'chat_input.dart';
+import 'chat_section.dart';
 import 'chat_viewmodel.dart';
 
 class ChatView extends ViewModelBuilderWidget<ChatViewModel> {
@@ -10,13 +12,17 @@ class ChatView extends ViewModelBuilderWidget<ChatViewModel> {
   ChatViewModel viewModelBuilder(BuildContext context) => ChatViewModel();
 
   @override
-  bool get reactive => false;
+  bool get reactive => true;
 
   @override
-  void onViewModelReady(ChatViewModel model) {}
+  void onViewModelReady(ChatViewModel model) {
+    model.join();
+  }
 
   @override
   Widget builder(BuildContext context, ChatViewModel model, Widget child) {
+    context.watch<ChatService>();
+    model.updateMessages();
     return Scaffold(
       backgroundColor: Color.fromRGBO(98, 98, 98, 1.0),
       appBar: AppBar(
@@ -29,7 +35,9 @@ class ChatView extends ViewModelBuilderWidget<ChatViewModel> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Flexible(
-              child: ChatSection(),
+              child: ChatSection(
+                messages: model.messages,
+              ),
             ),
             ChatInput(),
             SizedBox(

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:stacked/stacked.dart';
 
-import 'chat_viewmodel.dart';
+class ChatSection extends StatelessWidget {
+  final List<Widget> messages;
 
-class ChatSection extends ViewModelWidget<ChatViewModel> {
+  const ChatSection({Key key, @required this.messages}) : super(key: key);
+
   @override
-  Widget build(BuildContext context, ChatViewModel model) {
+  Widget build(BuildContext context) {
+    print("rebuild section");
     return ListView.builder(
-      itemBuilder: (_, int index) => model.messages[index],
-      itemCount: model.messages.length,
+      itemBuilder: (_, int index) => messages[index],
+      itemCount: messages.length,
       reverse: true,
       padding: EdgeInsets.all(6.0),
     );

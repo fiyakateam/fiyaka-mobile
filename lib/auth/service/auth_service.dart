@@ -62,4 +62,9 @@ class AuthService {
     }
     return null;
   }
+
+  String readToken() {
+    //TODO: Refresh token
+    return storageService.getString('access_token');
+  }
 }

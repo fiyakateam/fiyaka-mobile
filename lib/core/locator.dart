@@ -1,5 +1,7 @@
 import 'package:fiyaka/auth/service/auth_service.dart';
 import 'package:fiyaka/auth/view/profile/profile_viewmodel.dart';
+import 'package:fiyaka/chat/service/chat_service.dart';
+import 'package:fiyaka/chat/view/chat_viewmodel.dart';
 import 'package:get_it/get_it.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -41,4 +43,7 @@ Future<void> initLocator() async {
     _authService,
   );
   locator.registerSingleton(ProfileViewModel());
+
+  final _chatService = ChatService(_authService);
+  locator.registerSingleton(_chatService);
 }
