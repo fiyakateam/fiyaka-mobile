@@ -1,21 +1,27 @@
 import 'package:fiyaka/auth/widget/my_button.dart';
+import 'package:fiyaka/core/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../core/widget/my_app_bar.dart';
+import 'package:fiyaka/core/widget/my_app_bar.dart';
 import 'profile_viewmodel.dart';
 
 class ProfileView extends ViewModelBuilderWidget<ProfileViewModel> {
-  @override
-  ProfileViewModel viewModelBuilder(BuildContext context) => ProfileViewModel();
+  const ProfileView({Key key}) : super(key: key);
 
   @override
   bool get reactive => true;
 
   @override
+  bool get disposeViewModel => false;
+
+  @override
   void onViewModelReady(ProfileViewModel model) {
     model.refreshProfile();
   }
+
+  @override
+  bool get initialiseSpecialViewModelsOnce => true;
 
   @override
   Widget builder(BuildContext context, ProfileViewModel model, Widget child) {
@@ -125,7 +131,7 @@ class ProfileView extends ViewModelBuilderWidget<ProfileViewModel> {
                     children: [
                       SizedBox(
                         width: double.infinity,
-                        height: 400,
+                        height: 280,
                         child: DecoratedBox(
                           decoration: BoxDecoration(
                               color: Color.fromRGBO(196, 196, 196, 1),
@@ -161,4 +167,8 @@ class ProfileView extends ViewModelBuilderWidget<ProfileViewModel> {
       ),
     );
   }
+
+  @override
+  ProfileViewModel viewModelBuilder(BuildContext context) =>
+      locator<ProfileViewModel>();
 }

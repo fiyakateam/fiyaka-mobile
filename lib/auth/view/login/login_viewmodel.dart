@@ -26,7 +26,7 @@ class LoginViewModel extends BaseViewModel {
       notifyListeners();
     } else {
       FlashUtil.showText(context, 'Logged in as ${res.email}');
-      await _navigatorService.clearStackAndShow(Routes.profile);
+      await _navigatorService.clearStackAndShow(Routes.home);
     }
   }
 

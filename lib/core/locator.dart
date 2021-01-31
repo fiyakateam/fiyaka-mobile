@@ -1,4 +1,5 @@
 import 'package:fiyaka/auth/service/auth_service.dart';
+import 'package:fiyaka/auth/view/profile/profile_viewmodel.dart';
 import 'package:get_it/get_it.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -39,4 +40,5 @@ Future<void> initLocator() async {
   locator.registerSingleton(
     _authService,
   );
+  locator.registerSingleton(ProfileViewModel());
 }

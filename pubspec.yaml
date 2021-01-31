@@ -21,11 +21,14 @@ dependencies:
   device_info: ^1.0.0
   shared_preferences: ^0.5.12+4
   image_picker: ^0.6.7+17
+  animations: ^1.1.2
+  bubble: ^1.1.9+1
 
   # stacked architecture
   observable_ish: ^2.1.4
   stacked: ^1.7.6
   stacked_services: ^0.5.4+4
+  stacked_hooks: ^0.1.3+2
 
 dev_dependencies:
   flutter_test:
