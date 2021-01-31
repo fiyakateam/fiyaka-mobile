@@ -36,7 +36,7 @@ class LoginViewModel extends BaseViewModel {
     final status = await _authService.status();
     loading = false;
     if (status) {
-      await _navigatorService.clearStackAndShow(Routes.profile);
+      await _navigatorService.clearStackAndShow(Routes.home);
     } else {
       notifyListeners();
     }

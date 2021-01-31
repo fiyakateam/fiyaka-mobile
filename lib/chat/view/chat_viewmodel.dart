@@ -1,10 +1,30 @@
 import 'package:fiyaka/auth/widget/message_bubble.dart';
+import 'package:fiyaka/chat/service/chat_service.dart';
+import 'package:fiyaka/core/locator.dart';
 import 'package:flutter/widgets.dart';
 import 'package:stacked/stacked.dart';
 
 class ChatViewModel extends BaseViewModel {
+  final chatService = locator<ChatService>();
   final textController = TextEditingController();
-  final messages = <Widget>[];
+  var messages = <Widget>[];
+
+  void updateMessages() {
+    final conversation = chatService.conversation;
+    if (conversation == null) {
+      return;
+    }
+    final landlordId = conversation.landlord;
+    messages = conversation.messages
+        .map(
+          (m) => MessageBubble(
+            isReceived: m.from == landlordId,
+            text: m.content,
+          ),
+        )
+        .toList();
+  }
+
   void handleSubmitted(String text) {
     textController.clear();
     if (text != '') {
@@ -31,5 +51,9 @@ class ChatViewModel extends BaseViewModel {
       );
       notifyListeners();
     }
+  }
+
+  void join() {
+    chatService.join();
   }
 }

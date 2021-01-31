@@ -9,7 +9,7 @@ class ChatSection extends ViewModelWidget<ChatViewModel> {
     return ListView.builder(
       itemBuilder: (_, int index) => model.messages[index],
       itemCount: model.messages.length,
-      reverse: true,
+      reverse: false,
       padding: EdgeInsets.all(6.0),
     );
   }
