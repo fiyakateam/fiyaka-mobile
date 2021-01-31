@@ -1,11 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:stacked/stacked.dart';
+
 import '../service/chat_service.dart';
 import 'chat_input.dart';
 import 'chat_section.dart';
-import '../../core/locator.dart';
-import 'package:provider/provider.dart';
-import 'package:stacked/stacked.dart';
-import 'package:flutter/material.dart';
-
 import 'chat_viewmodel.dart';
 
 class ChatView extends ViewModelBuilderWidget<ChatViewModel> {
@@ -36,7 +35,9 @@ class ChatView extends ViewModelBuilderWidget<ChatViewModel> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Flexible(
-              child: ChatSection(),
+              child: ChatSection(
+                messages: model.messages,
+              ),
             ),
             ChatInput(),
             SizedBox(

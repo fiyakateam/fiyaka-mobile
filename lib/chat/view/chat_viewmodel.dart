@@ -27,15 +27,10 @@ class ChatViewModel extends BaseViewModel {
 
   void handleSubmitted(String text) {
     textController.clear();
+    if (chatService.conversation == null) return;
+    final landlordId = chatService.conversation.landlord;
     if (text != '') {
-      messages.insert(
-        0,
-        MessageBubble(
-          isReceived: false,
-          text: text,
-        ),
-      );
-      notifyListeners();
+      chatService.sendMessage(text, landlordId);
     }
   }
 
